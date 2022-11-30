@@ -1,26 +1,57 @@
-html,
-body {
-  padding: 0;
-  margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
-    Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
+body{
+  background-color: black;
 }
 
-a {
-  color: inherit;
-  text-decoration: none;
+
+.filter{
+  padding: 8px 16px;
+  border: 1px solid #e8e8e8;
+  color: #e8e8e8;
+  width: fit-content;
+  border-radius: 100px;
+  cursor: pointer;
+  text-transform: uppercase;
+  font-size: 12px;
+}
+.check{
+  background-color: #e8e8e8;
+  color: black;
 }
 
-* {
-  box-sizing: border-box;
+.registration{
+  color: #e8e8e8;
+  font-size: 28px;
+  margin-top: 50px;
+}
+.card-wrapper{
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 20px;
+  margin-top: 50px;
+}
+.question{
+  color: #e8e8e8;
+  font-size: 20px;
+  cursor: pointer;
+}
+.answer{
+  color: #e8e8e8;
+  opacity: .5;
+  font-size: 18px;
+  display: none;
+}
+.faq-check{
+  display: block;
 }
 
-@media (prefers-color-scheme: dark) {
-  html {
-    color-scheme: dark;
+@media (max-width:874px){
+  .card-wrapper{
+    grid-template-columns: 1fr 1fr;
   }
-  body {
-    color: white;
-    background: black;
+}
+
+@media (max-width:544px){
+  .card-wrapper{
+    grid-template-columns: 1fr;
   }
 }
