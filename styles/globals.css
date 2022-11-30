@@ -1,9 +1,14 @@
-body{
+body {
   background-color: black;
 }
 
-
-.filter{
+.filter-wrapper {
+  display: flex;
+  gap: 20px;
+  flex-wrap: wrap;
+  margin-top: 50px;
+}
+.filter {
   padding: 8px 16px;
   border: 1px solid #e8e8e8;
   color: #e8e8e8;
@@ -13,45 +18,7 @@ body{
   text-transform: uppercase;
   font-size: 12px;
 }
-.check{
+.check {
   background-color: #e8e8e8;
   color: black;
-}
-
-.registration{
-  color: #e8e8e8;
-  font-size: 28px;
-  margin-top: 50px;
-}
-.card-wrapper{
-  display: grid;
-  grid-template-columns: 1fr 1fr 1fr;
-  gap: 20px;
-  margin-top: 50px;
-}
-.question{
-  color: #e8e8e8;
-  font-size: 20px;
-  cursor: pointer;
-}
-.answer{
-  color: #e8e8e8;
-  opacity: .5;
-  font-size: 18px;
-  display: none;
-}
-.faq-check{
-  display: block;
-}
-
-@media (max-width:874px){
-  .card-wrapper{
-    grid-template-columns: 1fr 1fr;
-  }
-}
-
-@media (max-width:544px){
-  .card-wrapper{
-    grid-template-columns: 1fr;
-  }
 }
