@@ -22,7 +22,15 @@ body {
   background-color: #e8e8e8;
   color: black;
 }
-
+.movie-wrapper{
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  justify-content: center;
+  align-items: center;
+  margin-top: 30px;
+  padding-bottom: 50px;
+}
 .poster{
   width: 300px;
   height: 300px;
@@ -30,7 +38,31 @@ body {
   background-repeat: no-repeat;
   background-position:center;
 }
-
+.link{
+  color: white;
+  text-decoration: none;
+}
 .overview{
   color: #e8e8e8;
+  text-align: center;
+  width: 100%;
+  max-width: 450px;
+}
+.shuffle{
+  color: #e8e8e8;
+  cursor: pointer;
+  font-size: 18px;
+  margin-top: 20px;
+  border: 1px solid #e8e8e8;
+  border-radius: 100px;
+  width: fit-content;
+  padding: 10px 16px;
+  transition: 1s;
+}
+.shuffle:hover{
+  scale: 1.05;
+}
+
+.filter:hover{
+  scale: 1.05;
 }
