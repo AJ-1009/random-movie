@@ -1,6 +1,7 @@
 import Head from "next/head";
 import axios from "axios";
 import { useEffect, useState } from "react";
+import Link from "next/link";
 const categories = [
   "prime",
   "netflix",
@@ -16,7 +17,7 @@ const categories = [
 ];
 const types = ["movie", "series"];
 export default function Home() {
-  const [filter, setfilter] = useState("netflix");
+  const [filter, setfilter] = useState("prime");
   const [type, settype] = useState("movie");
   const [data, setdata] = useState();
   const [page, setpage] = useState(1);
@@ -36,7 +37,7 @@ export default function Home() {
         page: page,
       },
       headers: {
-        "X-RapidAPI-Key": process.env.NEXT_PUBLIC_API_KEY_2,
+        "X-RapidAPI-Key": process.env.NEXT_PUBLIC_API_KEY_4,
         "X-RapidAPI-Host": "streaming-availability.p.rapidapi.com",
       },
     };
@@ -90,6 +91,37 @@ export default function Home() {
           </div>
         ))}
       </div>
+      <MovieCard movie={shownmovie} type={type} category={filter} />
+    </div>
+  );
+}
+
+function MovieCard({ movie, type, category }) {
+  // const [link,setlink] = useState()
+  // const a = 'movie?.streamingInfo?.'+ category + 'us?.link'
+  // setlink(a)
+  return (
+    <div>
+      <div
+        className="poster"
+        style={{ backgroundImage: `url(${movie?.posterURLs?.original})` }}
+      ></div>
+      <div className="overview">{movie?.title} </div>
+      <div className="overview">{movie?.overview}</div>
+      {type == "series" && (
+        <div>
+          <div className="overview">Number of seasons : {movie?.seasons}</div>
+          <div className="overview">Toatal episodes : {movie?.episodes}</div>
+        </div>
+      )}
+      <Link href={movie.streamingInfo?.prime.us.link}>
+        <div className="link"> Watch the {type} </div>
+      </Link>
+      {movie?.video && (
+        <Link href={"https://www.youtube.com/watch?v="+movie?.video}>
+          <div className="link"> Watch the trailor </div>
+        </Link>
+      )}
     </div>
   );
 }

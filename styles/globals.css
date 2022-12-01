@@ -22,3 +22,15 @@ body {
   background-color: #e8e8e8;
   color: black;
 }
+
+.poster{
+  width: 300px;
+  height: 300px;
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position:center;
+}
+
+.overview{
+  color: #e8e8e8;
+}
