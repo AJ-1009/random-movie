@@ -97,9 +97,8 @@ export default function Home() {
       <div onClick={() => setshuffle(!shuffle)} className="shuffle">
         Shuffle {type}
       </div>
-      {console.log(shownmovie)}
       {shownmovie && (
-        <MovieCard movie={shownmovie} type={type} category={filter} />
+        <MovieCard movie={shownmovie} type={type} />
       )}
       {!shownmovie && (
         <div className="overview">
@@ -110,7 +109,7 @@ export default function Home() {
   );
 }
 
-function MovieCard({ movie, type, category }) {
+function MovieCard({ movie, type }) {
   return (
     <div className="movie-wrapper">
       <div
