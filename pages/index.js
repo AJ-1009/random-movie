@@ -126,22 +126,22 @@ function MovieCard({ movie, type, category }) {
         </div>
       )}
       {movie && movie?.streamingInfo?.prime?.us?.link && (
-        <Link href={movie?.streamingInfo?.prime?.us?.link}>
+        <Link href={movie?.streamingInfo?.prime?.us?.link} target='_blank' >
           <div className="link"> Watch the {type} </div>
         </Link>
       )}
       {movie && movie?.streamingInfo?.netflix?.us?.link && (
-        <Link href={movie?.streamingInfo?.netflix?.us?.link}>
+        <Link href={movie?.streamingInfo?.netflix?.us?.link} target='_blank' >
           <div className="link"> Watch the {type} </div>
         </Link>
       )}
       {movie && movie?.streamingInfo?.starz?.us?.link && (
-        <Link href={movie?.streamingInfo?.starz?.us?.link}>
+        <Link href={movie?.streamingInfo?.starz?.us?.link} target="_blank">
           <div className="link"> Watch the {type} </div>
         </Link>
       )}
       {movie && movie?.streamingInfo?.hulu?.us?.link && (
-        <Link href={movie?.streamingInfo?.hulu?.us?.link}>
+        <Link href={movie?.streamingInfo?.hulu?.us?.link} target='_blank' >
           <div className="link"> Watch the {type} </div>
         </Link>
       )}
@@ -151,27 +151,27 @@ function MovieCard({ movie, type, category }) {
         </Link>
       )}
       {movie && movie?.streamingInfo?.peacock?.us?.link && (
-        <Link href={movie?.streamingInfo?.peacock?.us?.link}>
+        <Link href={movie?.streamingInfo?.peacock?.us?.link} target='_blank' >
           <div className="link"> Watch the {type} </div>
         </Link>
       )}
       {movie && movie?.streamingInfo?.hbo?.us?.link && (
-        <Link href={movie?.streamingInfo?.hbo?.us?.link}>
+        <Link href={movie?.streamingInfo?.hbo?.us?.link} target='_blank' >
           <div className="link"> Watch the {type} </div>
         </Link>
       )}
       {movie && movie?.streamingInfo?.showtime?.us?.link && (
-        <Link href={movie?.streamingInfo?.showtime?.us?.link}>
+        <Link href={movie?.streamingInfo?.showtime?.us?.link} target='_blank' >
           <div className="link"> Watch the {type} </div>
         </Link>
       )}
       {movie && movie?.streamingInfo?.paramount?.us?.link && (
-        <Link href={movie?.streamingInfo?.paramount?.us?.link}>
+        <Link href={movie?.streamingInfo?.paramount?.us?.link} target='_blank' >
           <div className="link"> Watch the {type} </div>
         </Link>
       )}
       {movie && movie?.streamingInfo?.apple?.us?.link && (
-        <Link href={movie?.streamingInfo?.apple?.us?.link}>
+        <Link href={movie?.streamingInfo?.apple?.us?.link} target='_blank' >
           <div className="link"> Watch the {type} </div>
         </Link>
       )}
