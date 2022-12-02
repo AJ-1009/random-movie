@@ -29,7 +29,7 @@ export default function Home() {
     if (data) {
       setpage(Math.floor(Math.random() * data?.total_pages + 1));
     } else {
-      setpage(10);
+      setpage(Math.floor(Math.random() * 30 + 1));
     }
     const options = {
       method: "GET",
