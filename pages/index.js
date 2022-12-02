@@ -42,7 +42,7 @@ export default function Home() {
         page: page,
       },
       headers: {
-        "X-RapidAPI-Key": process.env.NEXT_PUBLIC_API_KEY_2,
+        "X-RapidAPI-Key": process.env.NEXT_PUBLIC_API_KEY_5,
         "X-RapidAPI-Host": "streaming-availability.p.rapidapi.com",
       },
     };
@@ -97,8 +97,9 @@ export default function Home() {
       <div onClick={() => setshuffle(!shuffle)} className="shuffle">
         Shuffle {type}
       </div>
+      {console.log(shownmovie)}
       {shownmovie && (
-        <MovieCard movie={shownmovie} type={type} />
+        <MovieCard movie={shownmovie} type={type} filter={filter} />
       )}
       {!shownmovie && (
         <div className="overview">
@@ -109,80 +110,167 @@ export default function Home() {
   );
 }
 
-function MovieCard({ movie, type }) {
+function MovieCard({ movie, type, filter }) {
+  const [overview, setoverview] = useState(true);
+  const [images, setimages] = useState(false);
+  const [cast, setcast] = useState(false);
+  const [trailer, settrailer] = useState(false);
+  const [poster, setposter] = useState();
   return (
     <div className="movie-wrapper">
-      <div
-        className="poster"
-        style={{ backgroundImage: `url(${movie?.posterURLs?.original})` }}
-      ></div>
-      <div className="overview">{movie?.title} </div>
-      <div className="overview">{movie?.overview}</div>
+      <div className="title-wrapper">
+        <div>
+          <div className="title">{movie?.title}</div>
+          <div className="info-wrapper">
+            <div className="year">{movie?.year}</div>
+            <div className="runtime">
+              {(movie?.runtime - (movie?.runtime % 60)) / 60}h{" "}
+              {movie?.runtime % 60}m
+            </div>
+          </div>
+        </div>
+        <div
+          className="poster-header"
+          style={{ backgroundImage: `url(${movie?.posterURLs?.original})` }}
+        ></div>
+      </div>
+      <div className="routes">
+        <div
+          onClick={() => {
+            setoverview(true);
+            settrailer(false);
+            setcast(false);
+            setimages(false);
+          }}
+        >
+          overview
+        </div>
+        <div
+          onClick={() => {
+            setoverview(false);
+            settrailer(false);
+            setcast(false);
+            setimages(true);
+            setposter(Object.values(movie?.backdropURLs));
+          }}
+        >
+          images
+        </div>
+        <div
+          onClick={() => {
+            setoverview(false);
+            settrailer(false);
+            setcast(true);
+            setimages(false);
+          }}
+        >
+          cast
+        </div>
+        <div
+          onClick={() => {
+            setoverview(false);
+            settrailer(true);
+            setcast(false);
+            setimages(false);
+          }}
+        >
+          trailer and links
+        </div>
+      </div>
+      {overview && (
+        <div>
+          <div className="title">About</div>
+          <div className="rating-wrapper">
+            <div className="rating">
+              {movie?.imdbRating / 10} /10
+              <div>IMDB</div>
+            </div>
+            <div className="line"></div>
+            <div className="rating">
+              {movie?.tmdbRating / 10} /10
+              <div>TMDB</div>
+            </div>
+          </div>
+          <div className="tagline">{movie?.tagline}</div>
+          <div className="overview">{movie?.overview}</div>
+        </div>
+      )}
       {type == "series" && (
         <div>
           <div className="overview">Number of seasons : {movie?.seasons}</div>
           <div className="overview">Toatal episodes : {movie?.episodes}</div>
         </div>
       )}
-      {movie && movie?.streamingInfo?.prime?.us?.link && (
-        <Link href={movie?.streamingInfo?.prime?.us?.link} target='_blank' >
+      {trailer && movie?.streamingInfo?.prime?.us?.link && (
+        <Link href={movie?.streamingInfo?.prime?.us?.link} target="_blank">
           <div className="link"> Watch the {type} </div>
         </Link>
       )}
-      {movie && movie?.streamingInfo?.netflix?.us?.link && (
-        <Link href={movie?.streamingInfo?.netflix?.us?.link} target='_blank' >
+      {trailer && movie?.streamingInfo?.netflix?.us?.link && (
+        <Link href={movie?.streamingInfo?.netflix?.us?.link} target="_blank">
           <div className="link"> Watch the {type} </div>
         </Link>
       )}
-      {movie && movie?.streamingInfo?.starz?.us?.link && (
+      {trailer && movie?.streamingInfo?.starz?.us?.link && (
         <Link href={movie?.streamingInfo?.starz?.us?.link} target="_blank">
           <div className="link"> Watch the {type} </div>
         </Link>
       )}
-      {movie && movie?.streamingInfo?.hulu?.us?.link && (
-        <Link href={movie?.streamingInfo?.hulu?.us?.link} target='_blank' >
+      {trailer && movie?.streamingInfo?.hulu?.us?.link && (
+        <Link href={movie?.streamingInfo?.hulu?.us?.link} target="_blank">
           <div className="link"> Watch the {type} </div>
         </Link>
       )}
-      {movie && movie?.streamingInfo?.disney?.us?.link && (
+      {trailer && movie?.streamingInfo?.disney?.us?.link && (
         <Link href={movie?.streamingInfo?.disney?.us?.link}>
           <div className="link"> Watch the {type} </div>
         </Link>
       )}
-      {movie && movie?.streamingInfo?.peacock?.us?.link && (
-        <Link href={movie?.streamingInfo?.peacock?.us?.link} target='_blank' >
+      {trailer && movie?.streamingInfo?.peacock?.us?.link && (
+        <Link href={movie?.streamingInfo?.peacock?.us?.link} target="_blank">
           <div className="link"> Watch the {type} </div>
         </Link>
       )}
-      {movie && movie?.streamingInfo?.hbo?.us?.link && (
-        <Link href={movie?.streamingInfo?.hbo?.us?.link} target='_blank' >
+      {trailer && movie?.streamingInfo?.hbo?.us?.link && (
+        <Link href={movie?.streamingInfo?.hbo?.us?.link} target="_blank">
           <div className="link"> Watch the {type} </div>
         </Link>
       )}
-      {movie && movie?.streamingInfo?.showtime?.us?.link && (
-        <Link href={movie?.streamingInfo?.showtime?.us?.link} target='_blank' >
+      {trailer && movie?.streamingInfo?.showtime?.us?.link && (
+        <Link href={movie?.streamingInfo?.showtime?.us?.link} target="_blank">
           <div className="link"> Watch the {type} </div>
         </Link>
       )}
-      {movie && movie?.streamingInfo?.paramount?.us?.link && (
-        <Link href={movie?.streamingInfo?.paramount?.us?.link} target='_blank' >
+      {trailer && movie?.streamingInfo?.paramount?.us?.link && (
+        <Link href={movie?.streamingInfo?.paramount?.us?.link} target="_blank">
           <div className="link"> Watch the {type} </div>
         </Link>
       )}
-      {movie && movie?.streamingInfo?.apple?.us?.link && (
-        <Link href={movie?.streamingInfo?.apple?.us?.link} target='_blank' >
+      {trailer && movie?.streamingInfo?.apple?.us?.link && (
+        <Link href={movie?.streamingInfo?.apple?.us?.link} target="_blank">
           <div className="link"> Watch the {type} </div>
         </Link>
       )}
-      {movie && movie?.streamingInfo?.mubi?.us?.link && (
+      {trailer && movie?.streamingInfo?.mubi?.us?.link && (
         <Link href={movie?.streamingInfo?.mubi?.us?.link}>
           <div className="link"> Watch the {type} </div>
         </Link>
       )}
-      {movie?.video && (
+      {trailer && movie?.video && (
         <Link href={"https://www.youtube.com/watch?v=" + movie?.video}>
           <div className="link"> Watch the trailor </div>
         </Link>
+      )}
+      {images && (
+        <div className="poster-wrapper" >
+          {poster.map((image) => (
+            <div
+              className="image"
+              style={{ backgroundImage: `url(${image})` }}
+              key={image}
+            ></div>
+          ))}
+        </div>
       )}
     </div>
   );
