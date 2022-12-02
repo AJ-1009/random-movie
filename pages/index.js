@@ -257,7 +257,7 @@ function MovieCard({ movie, type, filter }) {
         </Link>
       )}
       {trailer && movie?.video && (
-        <Link href={"https://www.youtube.com/watch?v=" + movie?.video}>
+        <Link href={"https://www.youtube.com/watch?v=" + movie?.video} target='_blank'>
           <div className="link"> Watch the trailor </div>
         </Link>
       )}
