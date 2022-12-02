@@ -42,7 +42,7 @@ export default function Home() {
         page: page,
       },
       headers: {
-        "X-RapidAPI-Key": process.env.NEXT_PUBLIC_API_KEY_1,
+        "X-RapidAPI-Key": process.env.NEXT_PUBLIC_API_KEY_2,
         "X-RapidAPI-Host": "streaming-availability.p.rapidapi.com",
       },
     };
