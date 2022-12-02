@@ -43,6 +43,39 @@ body {
 .filter:hover {
   scale: 1.05;
 }
+.loader-wrapper{
+  margin: auto;
+  margin-top: 30px;
+  width: 100%;
+  height: 200px;
+  border: 1px solid #e8e8e8;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  max-width: 600px;
+}
+.loader{
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  border: 3px solid #2a4165;
+  border-top-color: #e8e8e8 ;
+  animation: loading 2s linear infinite;
+}
+@keyframes loading{
+  0%{
+transform: rotate(0deg);
+  }
+  100%{
+    transform: rotate(360deg);
+  }
+}
+.para{
+  font-size: 18px;
+  color: #bdc1c6;
+}
 .routes {
   display: flex;
   gap: 10px;

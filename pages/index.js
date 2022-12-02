@@ -42,7 +42,7 @@ export default function Home() {
         page: page,
       },
       headers: {
-        "X-RapidAPI-Key": process.env.NEXT_PUBLIC_API_KEY_5,
+        "X-RapidAPI-Key": process.env.NEXT_PUBLIC_API_KEY_4,
         "X-RapidAPI-Host": "streaming-availability.p.rapidapi.com",
       },
     };
@@ -102,8 +102,9 @@ export default function Home() {
         <MovieCard movie={shownmovie} type={type} filter={filter} />
       )}
       {!shownmovie && (
-        <div className="overview">
-          Selecting your {type} from {filter}{" "}
+        <div className="loader-wrapper">
+          <div className="loader"></div>
+          <div className="para">Selecting your {type} from {filter} </div>
         </div>
       )}
     </div>
