@@ -42,7 +42,7 @@ export default function Home() {
         page: page,
       },
       headers: {
-        "X-RapidAPI-Key": process.env.NEXT_PUBLIC_API_KEY_6,
+        "X-RapidAPI-Key": process.env.NEXT_PUBLIC_API_KEY_7,
         "X-RapidAPI-Host": "streaming-availability.p.rapidapi.com",
       },
     };
@@ -124,10 +124,12 @@ function MovieCard({ movie, type, filter }) {
           <div className="title">{movie?.title}</div>
           <div className="info-wrapper">
             <div className="year">{movie?.year}</div>
-            <div className="runtime">
-              {(movie?.runtime - (movie?.runtime % 60)) / 60}h{" "}
-              {movie?.runtime % 60}m
-            </div>
+            {movie?.runtime && (
+              <div className="runtime">
+                {(movie?.runtime - (movie?.runtime % 60)) / 60}h{" "}
+                {movie?.runtime % 60}m
+              </div>
+            )}
           </div>
         </div>
         <div
@@ -184,88 +186,120 @@ function MovieCard({ movie, type, filter }) {
             </Link>
           )}
           <div className="rating-wrapper">
-            <div className="rating">
-              {movie?.imdbRating / 10} /10
-              <div>IMDB</div>
-            </div>
+            {movie?.imdbRating && (
+              <div className="rating">
+                {movie?.imdbRating / 10} /10
+                <div>IMDB</div>
+              </div>
+            )}
             <div className="line"></div>
-            <div className="rating">
-              {movie?.tmdbRating / 10} /10
-              <div>TMDB</div>
-            </div>
+            {movie?.tmdbRating && (
+              <div className="rating">
+                {movie?.tmdbRating / 10} /10
+                <div>TMDB</div>
+              </div>
+            )}
           </div>
+
+          {type == "series" && (
+            <div>
+              <div className="overview">
+                Number of seasons : {movie?.seasons}
+              </div>
+              <div className="overview">
+                Toatal episodes : {movie?.episodes}
+              </div>
+            </div>
+          )}
           {movie?.tagline && <div className="tagline">{movie?.tagline}</div>}
           <div className="overview">{movie?.overview}</div>
         </div>
       )}
-      {type == "series" && (
-        <div>
-          <div className="overview">Number of seasons : {movie?.seasons}</div>
-          <div className="overview">Toatal episodes : {movie?.episodes}</div>
+      <div className="link-wrapper">
+        {trailer && movie?.streamingInfo?.prime?.us?.link && (
+          <Link href={movie?.streamingInfo?.prime?.us?.link} target="_blank">
+            <div className="link"> Watch the {type} on Prime </div>
+          </Link>
+        )}
+        {trailer && movie?.streamingInfo?.netflix?.us?.link && (
+          <Link href={movie?.streamingInfo?.netflix?.us?.link} target="_blank">
+            <div className="link"> Watch the {type} on Netflix </div>
+          </Link>
+        )}
+        {trailer && movie?.streamingInfo?.starz?.us?.link && (
+          <Link href={movie?.streamingInfo?.starz?.us?.link} target="_blank">
+            <div className="link"> Watch the {type} on Starz</div>
+          </Link>
+        )}
+        {trailer && movie?.streamingInfo?.hulu?.us?.link && (
+          <Link href={movie?.streamingInfo?.hulu?.us?.link} target="_blank">
+            <div className="link"> Watch the {type} on Hulu</div>
+          </Link>
+        )}
+        {trailer && movie?.streamingInfo?.disney?.us?.link && (
+          <Link href={movie?.streamingInfo?.disney?.us?.link}>
+            <div className="link"> Watch the {type} on Disney</div>
+          </Link>
+        )}
+        {trailer && movie?.streamingInfo?.peacock?.us?.link && (
+          <Link href={movie?.streamingInfo?.peacock?.us?.link} target="_blank">
+            <div className="link"> Watch the {type} on Peacock</div>
+          </Link>
+        )}
+        {trailer && movie?.streamingInfo?.hbo?.us?.link && (
+          <Link href={movie?.streamingInfo?.hbo?.us?.link} target="_blank">
+            <div className="link"> Watch the {type} on Hbo</div>
+          </Link>
+        )}
+        {trailer && movie?.streamingInfo?.showtime?.us?.link && (
+          <Link href={movie?.streamingInfo?.showtime?.us?.link} target="_blank">
+            <div className="link"> Watch the {type} on Showtime</div>
+          </Link>
+        )}
+        {trailer && movie?.streamingInfo?.paramount?.us?.link && (
+          <Link
+            href={movie?.streamingInfo?.paramount?.us?.link}
+            target="_blank"
+          >
+            <div className="link"> Watch the {type} on Paramount </div>
+          </Link>
+        )}
+        {trailer && movie?.streamingInfo?.apple?.us?.link && (
+          <Link href={movie?.streamingInfo?.apple?.us?.link} target="_blank">
+            <div className="link"> Watch the {type} on Apple</div>
+          </Link>
+        )}
+        {trailer && movie?.streamingInfo?.mubi?.us?.link && (
+          <Link href={movie?.streamingInfo?.mubi?.us?.link}>
+            <div className="link"> Watch the {type} on Mubi</div>
+          </Link>
+        )}
+        {trailer && movie?.video && (
+          <Link
+            href={"https://www.youtube.com/watch?v=" + movie?.video}
+            target="_blank"
+          >
+            <div className="link"> Watch the trailor </div>
+          </Link>
+        )}
+      </div>
+      {cast && (
+        <div className="link-wrapper">
+          {movie?.cast.map((name) => (
+            <div key={name}>
+              <Link
+                href={`${process.env.NEXT_PUBLIC_GOOGLE_LINK_1}+ ${
+                  name.split(" ")[0]
+                }+'+'${name.split(" ")[1]} + ${
+                  process.env.NEXT_PUBLIC_GOOGLE_LINK_2
+                } `}
+                target="_blank"
+              >
+                <div className="link">{name}</div>
+              </Link>
+            </div>
+          ))}
         </div>
-      )}
-      {trailer && movie?.streamingInfo?.prime?.us?.link && (
-        <Link href={movie?.streamingInfo?.prime?.us?.link} target="_blank">
-          <div className="link"> Watch the {type} </div>
-        </Link>
-      )}
-      {trailer && movie?.streamingInfo?.netflix?.us?.link && (
-        <Link href={movie?.streamingInfo?.netflix?.us?.link} target="_blank">
-          <div className="link"> Watch the {type} </div>
-        </Link>
-      )}
-      {trailer && movie?.streamingInfo?.starz?.us?.link && (
-        <Link href={movie?.streamingInfo?.starz?.us?.link} target="_blank">
-          <div className="link"> Watch the {type} </div>
-        </Link>
-      )}
-      {trailer && movie?.streamingInfo?.hulu?.us?.link && (
-        <Link href={movie?.streamingInfo?.hulu?.us?.link} target="_blank">
-          <div className="link"> Watch the {type} </div>
-        </Link>
-      )}
-      {trailer && movie?.streamingInfo?.disney?.us?.link && (
-        <Link href={movie?.streamingInfo?.disney?.us?.link}>
-          <div className="link"> Watch the {type} </div>
-        </Link>
-      )}
-      {trailer && movie?.streamingInfo?.peacock?.us?.link && (
-        <Link href={movie?.streamingInfo?.peacock?.us?.link} target="_blank">
-          <div className="link"> Watch the {type} </div>
-        </Link>
-      )}
-      {trailer && movie?.streamingInfo?.hbo?.us?.link && (
-        <Link href={movie?.streamingInfo?.hbo?.us?.link} target="_blank">
-          <div className="link"> Watch the {type} </div>
-        </Link>
-      )}
-      {trailer && movie?.streamingInfo?.showtime?.us?.link && (
-        <Link href={movie?.streamingInfo?.showtime?.us?.link} target="_blank">
-          <div className="link"> Watch the {type} </div>
-        </Link>
-      )}
-      {trailer && movie?.streamingInfo?.paramount?.us?.link && (
-        <Link href={movie?.streamingInfo?.paramount?.us?.link} target="_blank">
-          <div className="link"> Watch the {type} </div>
-        </Link>
-      )}
-      {trailer && movie?.streamingInfo?.apple?.us?.link && (
-        <Link href={movie?.streamingInfo?.apple?.us?.link} target="_blank">
-          <div className="link"> Watch the {type} </div>
-        </Link>
-      )}
-      {trailer && movie?.streamingInfo?.mubi?.us?.link && (
-        <Link href={movie?.streamingInfo?.mubi?.us?.link}>
-          <div className="link"> Watch the {type} </div>
-        </Link>
-      )}
-      {trailer && movie?.video && (
-        <Link
-          href={"https://www.youtube.com/watch?v=" + movie?.video}
-          target="_blank"
-        >
-          <div className="link"> Watch the trailor </div>
-        </Link>
       )}
     </div>
   );
