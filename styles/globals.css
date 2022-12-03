@@ -43,7 +43,7 @@ body {
 .filter:hover {
   scale: 1.05;
 }
-.loader-wrapper{
+.loader-wrapper {
   margin: auto;
   margin-top: 30px;
   width: 100%;
@@ -56,23 +56,23 @@ body {
   gap: 10px;
   max-width: 600px;
 }
-.loader{
+.loader {
   width: 30px;
   height: 30px;
   border-radius: 50%;
   border: 3px solid #2a4165;
-  border-top-color: #e8e8e8 ;
+  border-top-color: #e8e8e8;
   animation: loading 2s linear infinite;
 }
-@keyframes loading{
-  0%{
-transform: rotate(0deg);
+@keyframes loading {
+  0% {
+    transform: rotate(0deg);
   }
-  100%{
+  100% {
     transform: rotate(360deg);
   }
 }
-.para{
+.para {
   font-size: 18px;
   color: #bdc1c6;
 }
@@ -141,15 +141,16 @@ transform: rotate(0deg);
   height: 50px;
   border-left: 1px solid #3c4043;
 }
-.overview,.tagline {
+.overview,
+.tagline {
   font-size: 14px;
   color: #bdc1c6;
   font-family: Arial, Helvetica, sans-serif;
   padding: 20px 0;
   width: 350px;
 }
-.overview{
-  padding: 20px 0 0 0 ;
+.overview {
+  padding: 20px 0 0 0;
 }
 .image {
   width: 200px;
@@ -164,4 +165,24 @@ transform: rotate(0deg);
   margin-top: 30px;
   gap: 10px;
   flex-wrap: wrap;
+}
+.link{
+  color: #8ab4f8;
+  font-size: 17px;
+  text-decoration: none;
+  text-decoration-line: none;
+}
+.trailer{
+  display: flex;
+  gap: 20px;
+  align-items: center;
+  padding: 10px 0;
+}
+.trailer-image{
+  width: 150px;
+  height: 86px;
+  border-radius: 15px;
+  background-position: center;
+  background-size: contain;
+  background-repeat: no-repeat;
 }

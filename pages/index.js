@@ -42,7 +42,7 @@ export default function Home() {
         page: page,
       },
       headers: {
-        "X-RapidAPI-Key": process.env.NEXT_PUBLIC_API_KEY_3,
+        "X-RapidAPI-Key": process.env.NEXT_PUBLIC_API_KEY_6,
         "X-RapidAPI-Host": "streaming-availability.p.rapidapi.com",
       },
     };
@@ -104,7 +104,9 @@ export default function Home() {
       {!shownmovie && (
         <div className="loader-wrapper">
           <div className="loader"></div>
-          <div className="para">Selecting your {type} from {filter} </div>
+          <div className="para">
+            Selecting your {type} from {filter}{" "}
+          </div>
         </div>
       )}
     </div>
@@ -139,7 +141,6 @@ function MovieCard({ movie, type, filter }) {
             setoverview(true);
             settrailer(false);
             setcast(false);
-     
           }}
         >
           overview
@@ -149,7 +150,6 @@ function MovieCard({ movie, type, filter }) {
             setoverview(false);
             settrailer(false);
             setcast(true);
-        
           }}
         >
           cast
@@ -167,6 +167,22 @@ function MovieCard({ movie, type, filter }) {
       {overview && (
         <div>
           <div className="title">About</div>
+          {movie?.video && (
+            <Link
+              href={"https://www.youtube.com/watch?v=" + movie?.video}
+              target="_blank"
+            >
+              <div className="trailer">
+                <div
+                  className="trailer-image"
+                  style={{
+                    backgroundImage: `url(${movie?.backdropURLs?.original})`,
+                  }}
+                ></div>
+                <div className="link">{movie?.title} : Official Trailer </div>
+              </div>
+            </Link>
+          )}
           <div className="rating-wrapper">
             <div className="rating">
               {movie?.imdbRating / 10} /10
@@ -178,7 +194,7 @@ function MovieCard({ movie, type, filter }) {
               <div>TMDB</div>
             </div>
           </div>
-          <div className="tagline">{movie?.tagline}</div>
+          {movie?.tagline && <div className="tagline">{movie?.tagline}</div>}
           <div className="overview">{movie?.overview}</div>
         </div>
       )}
@@ -244,11 +260,13 @@ function MovieCard({ movie, type, filter }) {
         </Link>
       )}
       {trailer && movie?.video && (
-        <Link href={"https://www.youtube.com/watch?v=" + movie?.video} target='_blank'>
+        <Link
+          href={"https://www.youtube.com/watch?v=" + movie?.video}
+          target="_blank"
+        >
           <div className="link"> Watch the trailor </div>
         </Link>
       )}
-
     </div>
   );
 }
