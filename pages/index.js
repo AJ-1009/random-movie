@@ -18,12 +18,13 @@ const categories = [
 const types = ["movie", "series"];
 export default function Home() {
   const [filter, setfilter] = useState("prime");
-  const [type, settype] = useState("movie");
+  const [type, settype] = useState("");
   const [data, setdata] = useState();
   const [page, setpage] = useState(1);
   const [shownmovie, setshownmovie] = useState();
   const [shuffle, setshuffle] = useState(true);
   const [error, seterror] = useState();
+  const [openmenu, setopenmenu] = useState(false);
 
   useEffect(() => {
     setshownmovie();
@@ -43,7 +44,7 @@ export default function Home() {
         page: page,
       },
       headers: {
-        "X-RapidAPI-Key": process.env.NEXT_PUBLIC_API_KEY_1,
+        "X-RapidAPI-Key": process.env.NEXT_PUBLIC_API_KEY_5,
         "X-RapidAPI-Host": "streaming-availability.p.rapidapi.com",
       },
     };
@@ -96,6 +97,42 @@ export default function Home() {
           </div>
         ))}
       </div>
+      <div className="burger" onClick={() => setopenmenu(true)}></div>
+      {openmenu && (
+        <div className="mobile-menu">
+          <div className="cross-wrapper" onClick={() => setopenmenu(false)}>
+            <div className="cross">
+              <div className="line-1"></div>
+              <div className="line-2"></div>
+            </div>
+            {/* <div className="series-wrapper">
+              {types.map((item) => (
+                <div
+                  key={item}
+                  onClick={() => settype(item)}
+                  className={`filter-movie ${item == type ? "check" : ""}`}
+                >
+                  {item}
+                </div>
+              ))}
+            </div> */}
+          </div>
+          <div className="mobile-menu-wrapper">
+            {categories.map((item) => (
+              <div
+                key={item}
+                onClick={() => {
+                  setfilter(item);
+                  setopenmenu(false);
+                }}
+                className={`filter ${item == filter ? "check" : ""}`}
+              >
+                {item}
+              </div>
+            ))}
+          </div>
+        </div>
+      )}
       <div onClick={() => setshuffle(!shuffle)} className="shuffle">
         Shuffle {type}
       </div>
@@ -112,7 +149,7 @@ export default function Home() {
       )}
       {error && (
         <div className="loader-wrapper">
-          <div className="para">API KEY is exhausted</div>
+          <div className="para">{error?.message}</div>
         </div>
       )}
     </div>
@@ -267,25 +304,26 @@ function MovieCard({ movie, type, filter }) {
         </div>
       )}
       <div className="link-wrapper">
-        {trailer && movielinks.map((link) => {
-          if (link.link) {
-            return (
-              <Link href={link.link} target="_blank" key={link.link}>
-                <div className="trailer">
-                  <div
-                    className="trailer-image"
-                    style={{
-                      backgroundImage: `url(${movie?.backdropURLs?.original})`,
-                    }}
-                  ></div>
-                  <div className="link">
-                    {movie?.title} : Watch on {link.platform}{" "}
+        {trailer &&
+          movielinks.map((link) => {
+            if (link.link) {
+              return (
+                <Link href={link.link} target="_blank" key={link.link}>
+                  <div className="trailer">
+                    <div
+                      className="trailer-image"
+                      style={{
+                        backgroundImage: `url(${movie?.backdropURLs?.original})`,
+                      }}
+                    ></div>
+                    <div className="link">
+                      {movie?.title} : Watch on {link.platform}{" "}
+                    </div>
                   </div>
-                </div>
-              </Link>
-            );
-          }
-        })}
+                </Link>
+              );
+            }
+          })}
         {trailer && movie?.video && (
           <Link
             href={"https://www.youtube.com/watch?v=" + movie?.video}
