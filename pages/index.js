@@ -113,10 +113,8 @@ export default function Home() {
 
 function MovieCard({ movie, type, filter }) {
   const [overview, setoverview] = useState(true);
-  const [images, setimages] = useState(false);
   const [cast, setcast] = useState(false);
   const [trailer, settrailer] = useState(false);
-  const [poster, setposter] = useState();
   return (
     <div className="movie-wrapper">
       <div className="title-wrapper">
@@ -141,7 +139,7 @@ function MovieCard({ movie, type, filter }) {
             setoverview(true);
             settrailer(false);
             setcast(false);
-            setimages(false);
+     
           }}
         >
           overview
@@ -150,19 +148,8 @@ function MovieCard({ movie, type, filter }) {
           onClick={() => {
             setoverview(false);
             settrailer(false);
-            setcast(false);
-            setimages(true);
-            setposter(Object.values(movie?.backdropURLs));
-          }}
-        >
-          images
-        </div>
-        <div
-          onClick={() => {
-            setoverview(false);
-            settrailer(false);
             setcast(true);
-            setimages(false);
+        
           }}
         >
           cast
@@ -172,7 +159,6 @@ function MovieCard({ movie, type, filter }) {
             setoverview(false);
             settrailer(true);
             setcast(false);
-            setimages(false);
           }}
         >
           trailer and links
@@ -262,17 +248,7 @@ function MovieCard({ movie, type, filter }) {
           <div className="link"> Watch the trailor </div>
         </Link>
       )}
-      {images && (
-        <div className="poster-wrapper" >
-          {poster.map((image) => (
-            <div
-              className="image"
-              style={{ backgroundImage: `url(${image})` }}
-              key={image}
-            ></div>
-          ))}
-        </div>
-      )}
+
     </div>
   );
 }
