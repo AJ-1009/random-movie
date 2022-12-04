@@ -2,6 +2,7 @@ import Head from "next/head";
 import axios from "axios";
 import { useEffect, useState } from "react";
 import Link from "next/link";
+import { motion, transform } from "framer-motion";
 const categories = [
   "prime",
   "netflix",
@@ -18,7 +19,7 @@ const categories = [
 const types = ["movie", "series"];
 export default function Home() {
   const [filter, setfilter] = useState("prime");
-  const [type, settype] = useState("");
+  const [type, settype] = useState("movie");
   const [data, setdata] = useState();
   const [page, setpage] = useState(1);
   const [shownmovie, setshownmovie] = useState();
@@ -44,7 +45,7 @@ export default function Home() {
         page: page,
       },
       headers: {
-        "X-RapidAPI-Key": process.env.NEXT_PUBLIC_API_KEY_5,
+        "X-RapidAPI-Key": process.env.NEXT_PUBLIC_API_KEY_3,
         "X-RapidAPI-Host": "streaming-availability.p.rapidapi.com",
       },
     };
@@ -75,29 +76,21 @@ export default function Home() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       {console.log(shownmovie)}
-      <div className="filter-wrapper">
-        {categories.map((item) => (
-          <div
-            key={item}
-            onClick={() => setfilter(item)}
-            className={`filter ${item == filter ? "check" : ""}`}
-          >
-            {item}
-          </div>
-        ))}
+      <div className="navbar">
+        <div className="burger" onClick={() => setopenmenu(true)}></div>
+        <div className="btn">
+          {types.map((item) => (
+            <div
+              key={item}
+              onClick={() => settype(item)}
+              className={`filter-movie ${item == type ? "check" : ""}`}
+            >
+              {item}
+            </div>
+          ))}{" "}
+          F
+        </div>
       </div>
-      <div className="filter-wrapper">
-        {types.map((item) => (
-          <div
-            key={item}
-            onClick={() => settype(item)}
-            className={`filter ${item == type ? "check" : ""}`}
-          >
-            {item}
-          </div>
-        ))}
-      </div>
-      <div className="burger" onClick={() => setopenmenu(true)}></div>
       {openmenu && (
         <div className="mobile-menu">
           <div className="cross-wrapper" onClick={() => setopenmenu(false)}>
@@ -105,34 +98,38 @@ export default function Home() {
               <div className="line-1"></div>
               <div className="line-2"></div>
             </div>
-            {/* <div className="series-wrapper">
-              {types.map((item) => (
-                <div
-                  key={item}
-                  onClick={() => settype(item)}
-                  className={`filter-movie ${item == type ? "check" : ""}`}
-                >
-                  {item}
-                </div>
-              ))}
-            </div> */}
           </div>
           <div className="mobile-menu-wrapper">
             {categories.map((item) => (
-              <div
+              <motion.div
                 key={item}
                 onClick={() => {
                   setfilter(item);
                   setopenmenu(false);
                 }}
+                initial={{
+                  backdropFilter: `blur(30)`,
+                }}
+                whileHover={{
+                  backgroundColor: transform(
+                    [0, 50],
+                    ["#141526", "#e8e8e8"]
+                  )(50),
+                  color: "black",
+                  transition: {
+                    duration: 0.001,
+                    ease: "easeIn",
+                  },
+                }}
                 className={`filter ${item == filter ? "check" : ""}`}
               >
                 {item}
-              </div>
+              </motion.div>
             ))}
           </div>
         </div>
       )}
+
       <div onClick={() => setshuffle(!shuffle)} className="shuffle">
         Shuffle {type}
       </div>
@@ -264,12 +261,14 @@ function MovieCard({ movie, type, filter }) {
               target="_blank"
             >
               <div className="trailer">
-                <div
-                  className="trailer-image"
-                  style={{
-                    backgroundImage: `url(${movie?.backdropURLs?.original})`,
-                  }}
-                ></div>
+                {movie?.backdropURLs?.original && (
+                  <div
+                    className="trailer-image"
+                    style={{
+                      backgroundImage: `url(${movie?.backdropURLs?.original})`,
+                    }}
+                  ></div>
+                )}
                 <div className="link">{movie?.title} : Official Trailer </div>
               </div>
             </Link>
@@ -310,12 +309,14 @@ function MovieCard({ movie, type, filter }) {
               return (
                 <Link href={link.link} target="_blank" key={link.link}>
                   <div className="trailer">
-                    <div
-                      className="trailer-image"
-                      style={{
-                        backgroundImage: `url(${movie?.backdropURLs?.original})`,
-                      }}
-                    ></div>
+                    {movie?.backdropURLs?.original && (
+                      <div
+                        className="trailer-image"
+                        style={{
+                          backgroundImage: `url(${movie?.backdropURLs?.original})`,
+                        }}
+                      ></div>
+                    )}
                     <div className="link">
                       {movie?.title} : Watch on {link.platform}{" "}
                     </div>
@@ -330,12 +331,14 @@ function MovieCard({ movie, type, filter }) {
             target="_blank"
           >
             <div className="trailer">
-              <div
-                className="trailer-image"
-                style={{
-                  backgroundImage: `url(${movie?.backdropURLs?.original})`,
-                }}
-              ></div>
+              {movie?.backdropURLs?.original && (
+                <div
+                  className="trailer-image"
+                  style={{
+                    backgroundImage: `url(${movie?.backdropURLs?.original})`,
+                  }}
+                ></div>
+              )}
               <div className="link">{movie?.title} : Official Trailer </div>
             </div>
           </Link>
