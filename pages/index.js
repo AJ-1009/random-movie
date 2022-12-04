@@ -259,6 +259,7 @@ function MovieCard({ movie, type, filter }) {
             <Link
               href={"https://www.youtube.com/watch?v=" + movie?.video}
               target="_blank"
+style={{textDecoration:'none'}}
             >
               <div className="trailer">
                 {movie?.backdropURLs?.original && (
@@ -307,7 +308,7 @@ function MovieCard({ movie, type, filter }) {
           movielinks.map((link) => {
             if (link.link) {
               return (
-                <Link href={link.link} target="_blank" key={link.link}>
+                <Link href={link.link} target="_blank" key={link.link} style={{textDecoration:'none'}}>
                   <div className="trailer">
                     {movie?.backdropURLs?.original && (
                       <div
@@ -327,6 +328,7 @@ function MovieCard({ movie, type, filter }) {
           })}
         {trailer && movie?.video && (
           <Link
+style={{textDecoration:'none'}}
             href={"https://www.youtube.com/watch?v=" + movie?.video}
             target="_blank"
           >
@@ -349,6 +351,7 @@ function MovieCard({ movie, type, filter }) {
           {movie?.cast.map((name) => (
             <div key={name}>
               <Link
+style={{textDecoration:'none'}}
                 href={`${process.env.NEXT_PUBLIC_GOOGLE_LINK_1}+ ${
                   name.split(" ")[0]
                 }+'+'${name.split(" ")[1]} + ${
