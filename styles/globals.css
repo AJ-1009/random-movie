@@ -6,11 +6,11 @@ body {
 }
 .heading {
 color:#e8e8e8;
-font-size:20px;
+font-size:24px;
 }
 .change:after{
 content:'';
-animation:transition 11s infinite linear;
+animation:transition 6s infinite linear;
 }
 @keyframes transition {
 0%{
