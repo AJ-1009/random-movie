@@ -6,7 +6,8 @@ body {
 }
 .heading {
 color:#e8e8e8;
-font-size:24px;
+font-size:28px;
+text-align:center;
 }
 .change:after{
 content:'';
