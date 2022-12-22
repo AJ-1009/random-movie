@@ -11,7 +11,7 @@ text-align:center;
 }
 .change:after{
 content:'';
-animation:transition 6s infinite linear;
+animation:transition 11s infinite linear;
 }
 @keyframes transition {
 0%{
@@ -78,7 +78,7 @@ content:'M';}
 100%{
 content:'';}
 .line{
-border-left:1px solid #e8e8e8;
+border-left:2px solid #e8e8e8;
 height:100%;
 width:1px;
 }
