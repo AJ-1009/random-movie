@@ -11,9 +11,9 @@ text-align:center;
 }
 .change:after{
 content:'';
-animation:transition 11s infinite linear;
+animation: changeText 11s infinite linear;
 }
-@keyframes transition {
+@keyframes changeText {
 0%{
 content:'R';
 }
