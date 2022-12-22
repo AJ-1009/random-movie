@@ -54,7 +54,7 @@ content:'Mo';
 }
 62.35%{
 content:'Mov';}
-}
+
 66.8%{
 content:'Movi';}
 71.25%{
@@ -75,6 +75,7 @@ content:'Mo';}
 content:'M';}
 100%{
 content:'';}
+}
 .burger {
   background-image: url("/nav-menu-icon.svg");
   background-position: center;
