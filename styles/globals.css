@@ -4,6 +4,77 @@ body {
   margin: auto;
   padding: 50px 20px;
 }
+.heading {
+color:#e8e8e8;
+font-size:20px;
+}
+.change:after{
+animation:transition 11s infinite-linear;
+}
+@keyframes{
+0%{
+content:'R';
+}
+4.45%{
+content:'Ra';
+}
+8.9%{
+content:'Ran';}
+13.35%{
+content:'Rand';
+}
+17.8%{
+content:'Rando';}
+22.25%{
+content:'Random';
+}
+26.7%{
+content:'Rando';
+}
+31.15%{
+content:'Rand';
+}
+35.6%{
+content:'Ran';
+}
+40%{
+content:'Ra';
+}
+44.45%{
+content:'R';
+}
+48.9%{
+content:''
+}
+53.35%{
+content:'M';
+}
+57.9%{
+content:'Mo';
+}
+62.35%{
+content:'Mov';}
+}
+66.8%{
+content:'Movi';}
+71.25%{
+content:'Movie';}
+75.7%{
+content:'Movies';
+}
+80.15%{
+content:'Movie';
+}
+84.6%{
+content:'Movi';}
+89.05%{
+content:'Mov';}
+93.5%{
+content:'Mo';}
+97%{
+content:'M';}
+100%{
+content:'';}
 .burger {
   background-image: url("/nav-menu-icon.svg");
   background-position: center;
