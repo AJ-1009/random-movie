@@ -72,9 +72,9 @@ content:'Mo';}
 content:'M';}
 }
 .line{
-border-left:2px solid #e8e8e8;
+background-color:#e8e8e8;
 height:100%;
-width:1px;
+width:6px;
 }
 .burger {
   background-image: url("/nav-menu-icon.svg");
