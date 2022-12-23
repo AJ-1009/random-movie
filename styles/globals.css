@@ -11,8 +11,8 @@ text-align:center;
 }
 .change:after{
 content:'';
-animation-delay:2s;
-animation: changeText 3s infinite linear;
+animation-delay:3s;
+animation: changeText 4s infinite linear;
 }
 @keyframes changeText {
 0%{
