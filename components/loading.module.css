@@ -1,0 +1,83 @@
+.main-wrapper {
+  padding: 20px;
+  width: 300px;
+  height: 300px;
+  margin: auto;
+  margin-top: 50px;
+  background-color: #45011a;
+  border-radius: 30px;
+}
+.container {
+  position: relative;
+}
+.circle {
+  width: 20px;
+  height: 20px;
+  position: absolute;
+  border-radius: 50%;
+  background-color: #dfb79e;
+  left: 15%;
+  transform-origin: 50%;
+  animation: circle 0.8s alternate infinite ease;
+}
+@keyframes circle {
+  0% {
+    top: 250px;
+    border-radius: 50px 50px 25px 25px;
+    transform: scaleX(1.7);
+    height: 5px;
+  }
+  40% {
+    height: 20px;
+    border-radius: 50%;
+    transform: scaleX(1);
+  }
+  100% {
+    top: 0%;
+  }
+}
+.circle:nth-child(2) {
+  animation-delay: 0.2s;
+  left: 45%;
+}
+.circle:nth-child(3) {
+  animation-delay: 0.4s;
+  left: auto;
+  right: 15%;
+  animation-delay: 0.3s;
+}
+
+.shadow {
+  width: 20px;
+  height: 4px;
+  border-radius: 50%;
+  background-color: rgba(220, 91, 81, 0.5);
+  position: absolute;
+  top: 252px;
+  transform-origin: 50%;
+  left: 15%;
+  filter: blur(1px);
+  animation: shadow 0.8s alternate infinite ease;
+}
+@keyframes shadow {
+  0% {
+    transform: scaleX(1.5);
+  }
+  40% {
+    transform: scaleX(1);
+    opacity: 0.7;
+  }
+  100% {
+    opacity: 0.4;
+    transform: scaleX(0.2);
+  }
+}
+.shadow:nth-child(4) {
+  animation-delay: 0.2s;
+  left: 45%;
+}
+.shadow:nth-child(5) {
+  animation-delay: 0.4s;
+  left: auto;
+  right: 15%;
+}
