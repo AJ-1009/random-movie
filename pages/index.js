@@ -25,7 +25,7 @@ export default function Home() {
   const [page, setpage] = useState(1);
   const [shownmovie, setshownmovie] = useState();
   const [shuffle, setshuffle] = useState(true);
-  const [error, seterror] = useState();
+  
   const [openmenu, setopenmenu] = useState(false);
 
   useEffect(() => {
@@ -56,7 +56,7 @@ export default function Home() {
         setdata(response.data);
       })
       .catch((error) => {
-        seterror(error);
+        console.log(error);
       });
   }, [filter, type, shuffle]);
   useEffect(() => {
@@ -139,7 +139,7 @@ export default function Home() {
       {shownmovie && (
         <MovieCard movie={shownmovie} type={type} filter={filter} />
       )}
-      {!shownmovie && !error && <Loader />}
+      {!shownmovie &&  <Loader />}
     </div>
   );
 }
