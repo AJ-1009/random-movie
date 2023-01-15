@@ -15,69 +15,53 @@ body {
   animation: changeText 4s infinite linear;
 }
 @keyframes changeText {
-  0% {
+  6% {
     content: "R";
   }
-  5% {
+  12% {
     content: "Ra";
   }
-  10% {
+  18% {
     content: "Ran";
   }
-  15% {
+  24% {
     content: "Rand";
-  }
-  20% {
-    content: "Rando";
-  }
-  25% {
-    content: "Random";
   }
   30% {
     content: "Rando";
   }
-  35% {
-    content: "Rand";
+  36% {
+    content: "Random";
   }
-  40% {
-    content: "Ran";
+  42% {
+    content: "Random ";
   }
-  45% {
-    content: "Ra";
+  48% {
+    content: "Random M";
   }
-  50% {
-    content: "R";
-  }
-  55% {
-    content: "";
+  54% {
+    content: "Random Mo";
   }
   60% {
-    content: "M";
+    content: "Random Mov";
   }
-  65% {
-    content: "Mo";
+  66% {
+    content: "Random Movi";
   }
-  70% {
-    content: "Mov";
+  72% {
+    content: "Random Movie";
   }
-
-  75% {
-    content: "Movi";
+  78% {
+    content: "Random Mov";
   }
-  80% {
-    content: "Movie";
-  }
-  85% {
-    content: "Movi";
+  84% {
+    content: "Random";
   }
   90% {
-    content: "Mov";
-  }
-  95% {
-    content: "Mo";
+    content: "Ran";
   }
   100% {
-    content: "M";
+    content: "";
   }
 }
 .line1 {
@@ -322,23 +306,23 @@ body {
   text-decoration-skip: unset;
   text-underline-offset: unset;
 }
-.filter::before {
+.filter:before {
   opacity: 1;
   color: #e8e8e8;
   transform: translateY(0) rotateX(0deg);
   transition: 0.5s;
 }
-.filter::after {
+.filter:after {
   opacity: 0;
   color: black;
   transition: 0.5s;
   transform: translateY(-50%) rotateX(90deg);
 }
-.filter:hover::before {
+.filter:hover:before {
   opacity: 0;
   transform: translateY(50%) rotateX(90deg);
 }
-.filter:hover::after {
+.filter:hover:after {
   opacity: 1;
   transform: translateY(0) rotateX(0deg);
 }
@@ -361,5 +345,8 @@ body {
   }
   .filter {
     font-size: 16px;
+  }
+  .heading{
+    font-size: 25px;
   }
 }
